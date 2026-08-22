@@ -1,0 +1,73 @@
+---
+interface Props {
+  class?: string;
+  height?: number | string;
+}
+
+const { class: className = '', height = 36 } = Astro.props;
+---
+
+<svg 
+  viewBox="0 0 260 85" 
+  fill="none" 
+  xmlns="http://www.w3.org/2000/svg" 
+  class:list={['lvsun-logo-svg', className]}
+  style={`height: ${typeof height === 'number' ? height + 'px' : height}; width: auto;`}
+  aria-label="LVsun logo"
+>
+  <!-- 1. Sun Arc (Orange) -->
+  <path 
+    d="M 160 35 A 42 42 0 0 1 228 46" 
+    stroke="#ff9800" 
+    stroke-width="4.5" 
+    stroke-linecap="round" 
+    class="logo-sun-arc"
+  />
+
+  <!-- 2. Three Solar Panels (White wireframe) -->
+  <!-- Panel 1 -->
+  <polygon points="122,45 137,28 158,28 143,45" stroke="#ffffff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <line x1="130" y1="36.5" x2="150.5" y2="36.5" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+  <line x1="140" y1="28" x2="132.5" y2="45" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+
+  <!-- Panel 2 -->
+  <polygon points="147,45 162,28 183,28 168,45" stroke="#ffffff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <line x1="155" y1="36.5" x2="175.5" y2="36.5" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+  <line x1="165" y1="28" x2="157.5" y2="45" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+
+  <!-- Panel 3 -->
+  <polygon points="172,45 187,28 208,28 193,45" stroke="#ffffff" stroke-width="2" fill="none" stroke-linejoin="round" />
+  <line x1="180" y1="36.5" x2="200.5" y2="36.5" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+  <line x1="190" y1="28" x2="182.5" y2="45" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+
+  <!-- 3. Stylized 'L', 'V' with Pulse Dip & Horizontal Line (White) -->
+  <!-- L -->
+  <path 
+    d="M 12 18 V 49 H 46" 
+    stroke="#ffffff" 
+    stroke-width="4.5" 
+    stroke-linecap="square" 
+    stroke-linejoin="miter" 
+  />
+
+  <!-- V with Deep Pulse Dip continuing into the Solar Baseline -->
+  <path 
+    d="M 46 49 L 58 24 L 78 74 L 95 45 H 242" 
+    stroke="#ffffff" 
+    stroke-width="4" 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+  />
+
+  <!-- 4. 'SUN' Bold Lettering (Orange) -->
+  <g class="logo-sun-text" fill="none" stroke="#ff9800" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- S -->
+    <path d="M 142 56 H 117 C 114 56 112 58 112 61 C 112 64 114 66 117 66 H 137 C 140 66 142 68 142 71 C 142 74 140 76 137 76 H 112" />
+    
+    <!-- U -->
+    <path d="M 158 56 V 69 C 158 74 161 76 166 76 C 171 76 174 74 174 69 V 56" />
+
+    <!-- N -->
+    <path d="M 191 76 V 56 L 221 76 V 56" />
+  </g>
+</svg>
