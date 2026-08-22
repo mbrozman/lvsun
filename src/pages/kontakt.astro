@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { siteConfig } from '../data/siteConfig';
 ---
 
 <Layout 
   title="Kontakt — Objednajte si diagnostiku a servis" 
-  description="Kontaktujte nezávislých špecialistov na fotovoltiku. Vyplňte kontaktný formulár a získajte cenovú ponuku na diagnostiku a servis vašej FVE."
+  description="Kontaktujte nezávislých špecialistov na fotovoltiku LVsun. Objednajte si certifikovanú diagnostiku, termovíziu a servis vašej fotovoltickej elektrárne."
 >
   <main class="contact-page">
     <!-- Page Header Hero -->
@@ -34,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
               <div class="info-content">
                 <span>TELEFÓN</span>
-                <a href="tel:+421900000000">+421 900 000 000</a>
+                <a href={`tel:${siteConfig.company.contact.phoneRaw}`}>{siteConfig.company.contact.phone}</a>
               </div>
             </div>
 
@@ -45,7 +46,7 @@ import Layout from '../layouts/Layout.astro';
               </div>
               <div class="info-content">
                 <span>E-MAIL</span>
-                <a href="mailto:info@lvsun.sk">info@lvsun.sk</a>
+                <a href={`mailto:${siteConfig.company.contact.email}`}>{siteConfig.company.contact.email}</a>
               </div>
             </div>
           </div>
@@ -56,19 +57,23 @@ import Layout from '../layouts/Layout.astro';
             <div class="billing-grid">
               <div>
                 <strong>Spoločnosť:</strong>
-                <p>LVsun s.r.o.</p>
+                <p>{siteConfig.company.legalName}</p>
               </div>
               <div>
                 <strong>Sídlo:</strong>
-                <p>Ulica slnečnej energie 42, 811 01 Bratislava</p>
+                <p>{siteConfig.company.address.street}, {siteConfig.company.address.postalCode} {siteConfig.company.address.city}</p>
               </div>
               <div>
                 <strong>IČO:</strong>
-                <p>00 000 000</p>
+                <p>{siteConfig.company.ico}</p>
               </div>
               <div>
                 <strong>DIČ:</strong>
-                <p>SK0000000000</p>
+                <p>{siteConfig.company.dic}</p>
+              </div>
+              <div>
+                <strong>IČ DPH:</strong>
+                <p>{siteConfig.company.icDph} ({siteConfig.company.icDphNote})</p>
               </div>
             </div>
           </div>

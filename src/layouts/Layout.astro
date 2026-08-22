@@ -1,46 +1,122 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/siteConfig';
 import '../styles/index.css';
 
 interface Props {
   title: string;
   description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  noindex?: boolean;
 }
 
 const { 
   title, 
-  description = "Diagnostika, servis a monitoring fotovoltických elektrární po celom Slovensku. Nájdeme, čo bežná kontrola prehliadne — chybný panel, horúci spoj, chybné stringy." 
+  description = siteConfig.seo.defaultDescription,
+  keywords = siteConfig.seo.keywords,
+  ogImage = siteConfig.site.ogImage,
+  noindex = false
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteConfig.site.url);
+const ogImageURL = new URL(ogImage, Astro.site || siteConfig.site.url);
+const fullTitle = title.includes('LVsun') ? title : `${title} | ${siteConfig.company.brandName}`;
+
+// Schema.org LocalBusiness & Organization JSON-LD
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": `${siteConfig.site.url}/#business`,
+      "name": siteConfig.company.legalName,
+      "alternateName": siteConfig.company.brandName,
+      "url": siteConfig.site.url,
+      "logo": `${siteConfig.site.url}/favicon.svg`,
+      "image": ogImageURL.toString(),
+      "description": siteConfig.seo.defaultDescription,
+      "email": siteConfig.company.contact.email,
+      "telephone": siteConfig.company.contact.phone,
+      "taxID": siteConfig.company.dic,
+      "vatID": siteConfig.company.icDph,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": siteConfig.company.address.street,
+        "addressLocality": siteConfig.company.address.city,
+        "postalCode": siteConfig.company.address.postalCode,
+        "addressCountry": "SK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": siteConfig.company.geo.latitude,
+        "longitude": siteConfig.company.geo.longitude
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Slovakia"
+      },
+      "priceRange": "$$"
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.site.url}/#website`,
+      "url": siteConfig.site.url,
+      "name": siteConfig.site.name,
+      "publisher": {
+        "@id": `${siteConfig.site.url}/#business`
+      },
+      "inLanguage": siteConfig.site.lang
+    }
+  ]
+};
 ---
 
 <!doctype html>
-<html lang="sk">
+<html lang={siteConfig.site.lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content={siteConfig.site.themeColor} />
     
     <!-- Primary SEO Meta Tags -->
-    <title>{title} | LVsun</title>
-    <meta name="title" content={`${title} | LVsun`} />
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(', ')} />
+    <meta name="author" content={siteConfig.site.author} />
+    <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
     
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content={siteConfig.company.geo.region} />
+    <meta name="geo.placename" content={siteConfig.company.address.city} />
+    <meta name="geo.position" content={`${siteConfig.company.geo.latitude};${siteConfig.company.geo.longitude}`} />
+    <meta name="ICBM" content={`${siteConfig.company.geo.latitude}, ${siteConfig.company.geo.longitude}`} />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url} />
-    <meta property="og:title" content={`${title} | LVsun`} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content={siteConfig.company.brandName} />
+    <meta property="og:locale" content={siteConfig.site.locale} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/og-share.jpg" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:alt" content={fullTitle} />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={Astro.url} />
-    <meta property="twitter:title" content={`${title} | LVsun`} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/images/og-share.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
     <!-- Glow Background Gradients -->
