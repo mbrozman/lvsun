@@ -22,8 +22,9 @@ export const siteConfig = {
     contact: {
       email: "lvsun@lvsun.com",
       supportEmail: "info@lvsun.sk",
-      phone: "+421 900 000 000", // TODO: nahradiť reálnym číslom
-      phoneRaw: "+421900000000",
+      phone: "+421 902 123 631",
+      phoneDisplay: "0902 123 631",
+      phoneRaw: "+421902123631",
       workHours: "Po - Pia: 08:00 - 17:00",
     },
   },
@@ -37,7 +38,7 @@ export const siteConfig = {
     lang: "sk",
     author: "LVsun s. r. o.",
     themeColor: "#050811",
-    ogImage: "/images/og-share.jpg",
+    ogImage: "/images/og-share.png",
   },
 
   // Predvolené SEO hodnoty

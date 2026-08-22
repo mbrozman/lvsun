@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#0a1224" />
+      <stop offset="100%" stop-color="#04060d" />
+    </radialGradient>
+    <radialGradient id="orangeGlow" cx="65%" cy="40%" r="35%">
+      <stop offset="0%" stop-color="rgba(255, 152, 0, 0.12)" />
+      <stop offset="100%" stop-color="rgba(255, 152, 0, 0)" />
+    </radialGradient>
+    <radialGradient id="tealGlow" cx="35%" cy="55%" r="40%">
+      <stop offset="0%" stop-color="rgba(0, 240, 240, 0.08)" />
+      <stop offset="100%" stop-color="rgba(0, 240, 240, 0)" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGlow)" />
+  <rect width="1200" height="630" fill="url(#orangeGlow)" />
+  <rect width="1200" height="630" fill="url(#tealGlow)" />
+
+  <!-- Subtle grid border -->
+  <rect x="20" y="20" width="1160" height="590" rx="16" fill="none" stroke="rgba(255, 255, 255, 0.06)" stroke-width="2" />
+
+  <!-- Logo Group centered (Scaled & Positioned) -->
+  <g transform="translate(240, 140) scale(2.8)">
+    <!-- 1. Sun Arc (Orange) -->
+    <path 
+      d="M 160 35 A 42 42 0 0 1 228 46" 
+      stroke="#ff9800" 
+      stroke-width="4.5" 
+      stroke-linecap="round" 
+    />
+
+    <!-- 2. Three Solar Panels (White wireframe) -->
+    <!-- Panel 1 -->
+    <polygon points="122,45 137,28 158,28 143,45" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.05)" stroke-linejoin="round" />
+    <line x1="130" y1="36.5" x2="150.5" y2="36.5" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+    <line x1="140" y1="28" x2="132.5" y2="45" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+
+    <!-- Panel 2 -->
+    <polygon points="147,45 162,28 183,28 168,45" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.05)" stroke-linejoin="round" />
+    <line x1="155" y1="36.5" x2="175.5" y2="36.5" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+    <line x1="165" y1="28" x2="157.5" y2="45" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+
+    <!-- Panel 3 -->
+    <polygon points="172,45 187,28 208,28 193,45" stroke="#ffffff" stroke-width="2" fill="rgba(255,255,255,0.05)" stroke-linejoin="round" />
+    <line x1="180" y1="36.5" x2="200.5" y2="36.5" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+    <line x1="190" y1="28" x2="182.5" y2="45" stroke="#ffffff" stroke-width="1.2" opacity="0.8" />
+
+    <!-- 3. Stylized 'L', 'V' with Pulse Dip & Horizontal Line (White) -->
+    <!-- L -->
+    <path 
+      d="M 12 18 V 49 H 46" 
+      stroke="#ffffff" 
+      stroke-width="4.5" 
+      stroke-linecap="square" 
+      stroke-linejoin="miter" 
+    />
+
+    <!-- V with Deep Pulse Dip continuing into the Solar Baseline -->
+    <path 
+      d="M 46 49 L 58 24 L 78 74 L 95 45 H 242" 
+      stroke="#ffffff" 
+      stroke-width="4" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+    />
+
+    <!-- 4. 'SUN' Bold Lettering (Orange) -->
+    <g fill="none" stroke="#ff9800" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- S -->
+      <path d="M 142 56 H 117 C 114 56 112 58 112 61 C 112 64 114 66 117 66 H 137 C 140 66 142 68 142 71 C 142 74 140 76 137 76 H 112" />
+      
+      <!-- U -->
+      <path d="M 158 56 V 69 C 158 74 161 76 166 76 C 171 76 174 74 174 69 V 56" />
+
+      <!-- N -->
+      <path d="M 191 76 V 56 L 221 76 V 56" />
+    </g>
+
+    <!-- 5. Subtitle: SERVICE • MONITORING • DIAGNOSTICS -->
+    <text 
+      x="128" 
+      y="94" 
+      fill="#cbd5e1" 
+      font-family="'Space Grotesk', system-ui, -apple-system, sans-serif" 
+      font-size="7.5" 
+      font-weight="600" 
+      letter-spacing="3.2" 
+      text-anchor="middle"
+    >
+      SERVICE  <tspan fill="#ff9800">•</tspan>  MONITORING  <tspan fill="#ff9800">•</tspan>  DIAGNOSTICS
+    </text>
+  </g>
+</svg>
