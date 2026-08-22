@@ -70,65 +70,98 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    <!-- Core Pillars Grid -->
-    <section class="about-pillars alt-bg">
-      <div class="bg-glow bg-glow-teal" style="top: 20%; left: -10%; opacity: 0.1;"></div>
+    <!-- Value Proposition Section: Prečo LVsun s grafom merania -->
+    <section class="why-us-section alt-bg">
+      <div class="bg-glow bg-glow-orange" style="top: 30%; left: -10%; opacity: 0.08;"></div>
       
       <div class="container">
-        <div class="section-header">
-          <span class="badge badge-orange">Naše piliere</span>
-          <h2>Ako garantujeme kvalitu</h2>
-          <p>Naša práca stojí na presných dátach, špičkovom vybavení a férovom prístupe k zákazníkovi.</p>
+        <div class="section-header text-center">
+          <span class="badge badge-orange">Prečo LVsun</span>
+          <h2>S vami aj po záruke — nezávisle od inštalatéra</h2>
+          <p>Sme nezávislý partner pre vašu energetickú slobodu. Ponúkame objektívne fakty namiesto odhadov.</p>
         </div>
 
-        <div class="grid-auto pillars-grid">
-          <!-- Pillar 1 -->
-          <div class="glass-panel pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
+        <div class="grid-2 why-us-grid">
+          <!-- Benefits text & cards -->
+          <div class="why-us-features">
+            <!-- Feature 1 -->
+            <div class="why-feature-item">
+              <div class="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-svg">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h3>Nezávislý a objektívny audit</h3>
+                <p>Nepredávame ani neinštalujeme fotovoltické panely. Naším záujmom nie je predať vám nový tovar, ale odhaliť skutočný stav a odporučiť najvýhodnejšie opravy podložené nameranými dátami.</p>
+              </div>
             </div>
-            <h3>Termovízia z výšky</h3>
-            <p>Pri rozsiahlejších elektrárňach používame diagnostické drony vybavené termokamerami. Skenovanie striech prebieha rýchlo, bezpečne a bez nutnosti chodiť priamo po paneloch, čím eliminujeme riziko vzniku nových mikrotrhlín.</p>
+
+            <!-- Feature 2 -->
+            <div class="why-feature-item">
+              <div class="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-svg">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h3>Priemyselná meracia technika</h3>
+                <p>Používame vysoko presné meracie prístroje pre I-V krivky a certifikované termokamery. Zaručujeme presné, reprodukovateľné výsledky v súlade s platnými technickými normami.</p>
+              </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="why-feature-item">
+              <div class="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-svg">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="feature-text">
+                <h3>Sledovateľná história elektrárne</h3>
+                <p>Každé jedno meranie archivujeme a priraďujeme k vašej elektrárni. S priebežným monitoringom vieme presne ukázať, ako sa vyvíja účinnosť a zdravie vašich panelov v priebehu rokov.</p>
+              </div>
+            </div>
           </div>
 
-          <!-- Pillar 2 -->
-          <div class="glass-panel pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="16"></line>
-                <line x1="8" y1="12" x2="16" y2="12"></line>
-              </svg>
+          <!-- Feature Image/Mockup container -->
+          <div class="why-us-visual">
+            <div class="glass-card visual-card">
+              <div class="visual-card-header">
+                <span class="badge badge-teal">Report merania</span>
+              </div>
+              <div class="visual-chart-sim">
+                <!-- SVG simulated line chart of decay/normal comparison -->
+                <svg viewBox="0 0 300 180" class="chart-svg">
+                  <path d="M 30 150 Q 150 130 270 50" fill="none" stroke="var(--secondary)" stroke-width="3" class="chart-line-active" />
+                  <path d="M 30 150 Q 150 110 270 110" fill="none" stroke="var(--error)" stroke-width="2" stroke-dasharray="4" />
+                  
+                  <!-- Dots -->
+                  <circle cx="270" cy="50" r="5" fill="var(--secondary)" />
+                  <circle cx="270" cy="110" r="4" fill="var(--error)" />
+                  
+                  <text x="200" y="40" fill="var(--secondary)" font-size="8" font-family="monospace">Optimal: 100%</text>
+                  <text x="200" y="125" fill="var(--error)" font-size="8" font-family="monospace">Real: 68% (Faulty String)</text>
+                  
+                  <!-- Axes -->
+                  <line x1="30" y1="150" x2="280" y2="150" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  <line x1="30" y1="20" x2="30" y2="150" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
+                  
+                  <text x="15" y="25" fill="var(--text-muted)" font-size="8">U (V)</text>
+                  <text x="270" y="165" fill="var(--text-muted)" font-size="8">I (A)</text>
+                </svg>
+              </div>
+              <div class="visual-card-desc">
+                <h4>Diagnostické vyhodnotenie</h4>
+                <p>Nameraná I-V krivka (prerušovaná čiara) jasne odhaľuje pokles prúdu a napätia z dôvodu vadného stringu, čo viedlo k okamžitej strate 32% výkonu celej elektrárne.</p>
+              </div>
             </div>
-            <h3>Meranie I-V krivky</h3>
-            <p>Zmeraním ampér-voltovej charakteristiky získame rodný list každého zapojeného stringu. Tento test ukáže reálny elektrický stav panelov a odhalí straty spôsobené zatienením, poškodenými bypass diódami či starnutím.</p>
-          </div>
-
-          <!-- Pillar 3 -->
-          <div class="glass-panel pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
-              </svg>
-            </div>
-            <h3>Prehľadný audit</h3>
-            <p>Výstupom našej práce je komplexný diagnostický report. Je napísaný zrozumiteľným jazykom, obsahuje vizuálne aj grafické prílohy meraní a presný zoznam navrhovaných opráv pre vášho servisného technika.</p>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="glass-panel pillar-card">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="icon-svg">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" y1="13" x2="8" y2="13"></line>
-                <line x1="16" y1="17" x2="8" y2="17"></line>
-              </svg>
-            </div>
-            <h3>Sledovateľná história</h3>
-            <p>Každé jedno meranie archivujeme a priraďujeme k vašej elektrárni. S priebežnou diagnostikou vieme presne ukázať vývoj účinnosti a reálny stav panelov v čase.</p>
           </div>
         </div>
       </div>
@@ -306,63 +339,109 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.5;
   }
 
-  /* Pillars section */
-  .about-pillars {
+  /* Why Choose Us Styling */
+  .why-us-section {
     padding: 7rem 0;
+    background: var(--bg-deep);
     border-bottom: 1px solid var(--border-color);
+    position: relative;
   }
 
-  .about-pillars.alt-bg {
-    background: var(--bg-dark);
+  .why-us-grid {
+    align-items: center;
+    margin-top: 3rem;
   }
 
-  .pillar-card {
-    padding: 2.5rem;
+  .why-us-features {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    border-radius: 16px;
+    gap: 2.5rem;
   }
 
-  .pillar-card:hover {
-    border-color: var(--primary);
-    box-shadow: 0 8px 30px rgba(255,150,0,0.05);
-    transform: translateY(-4px);
+  .why-feature-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
   }
 
-  .pillar-card:nth-child(even):hover {
-    border-color: var(--secondary);
-    box-shadow: 0 8px 30px rgba(0,240,240,0.05);
-  }
-
-  .pillar-icon {
+  .feature-icon-wrapper {
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-color);
+    background: hsla(180, 80%, 45%, 0.1);
+    border: 1px solid hsla(180, 80%, 45%, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--primary);
-  }
-
-  .pillar-card:nth-child(even) .pillar-icon {
     color: var(--secondary);
+    flex-shrink: 0;
   }
 
-  .icon-svg {
+  .feature-svg {
     width: 24px;
     height: 24px;
   }
 
-  .pillar-card h3 {
-    font-size: 1.35rem;
+  .why-feature-item:nth-child(even) .feature-icon-wrapper {
+    background: hsla(35, 100%, 55%, 0.1);
+    border-color: hsla(35, 100%, 55%, 0.2);
+    color: var(--primary);
   }
 
-  .pillar-card p {
-    font-size: 0.9rem;
+  .feature-text h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .feature-text p {
+    font-size: 0.95rem;
     line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Visual Card simulation */
+  .why-us-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .visual-card {
+    max-width: 420px;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    padding: 1.75rem;
+  }
+
+  .visual-card-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .visual-chart-sim {
+    background: #090d16;
+    border-radius: 8px;
+    border: 1px solid hsla(217, 30%, 15%, 0.8);
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .chart-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .visual-card-desc h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .visual-card-desc p {
+    font-size: 0.85rem;
+    line-height: 1.5;
     color: var(--text-secondary);
   }
 
