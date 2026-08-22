@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProcessTimeline from '../components/ProcessTimeline.astro';
-import FaqSection from '../components/FaqSection.astro';
 ---
 
 <Layout 
@@ -17,110 +16,10 @@ import FaqSection from '../components/FaqSection.astro';
     <!-- 2. Services Overview Section -->
     <ServiceCard />
 
-    <!-- 3. Why Choose Us (Value Proposition Section) -->
-    <section class="why-us-section">
-      <div class="bg-glow bg-glow-orange" style="top: 30%; left: -10%; opacity: 0.08;"></div>
-      
-      <div class="container">
-        <div class="section-header">
-          <span class="badge badge-orange">Prečo LVsun</span>
-          <h2>S vami aj po záruke — nezávisle od inštalatéra</h2>
-          <p>Sme nezávislý partner pre vašu energetickú slobodu. Ponúkame objektívne fakty namiesto odhadov.</p>
-        </div>
-
-        <div class="grid-2 why-us-grid">
-          <!-- Benefits text & cards -->
-          <div class="why-us-features">
-            <!-- Feature 1 -->
-            <div class="why-feature-item">
-              <div class="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-svg">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                </svg>
-              </div>
-              <div class="feature-text">
-                <h3>Nezávislý a objektívny audit</h3>
-                <p>Nepredávame ani neinštalujeme fotovoltické panely. Naším záujmom nie je predať vám nový tovar, ale odhaliť skutočný stav a odporučiť najvýhodnejšie opravy podložené nameranými dátami.</p>
-              </div>
-            </div>
-
-            <!-- Feature 2 -->
-            <div class="why-feature-item">
-              <div class="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-svg">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                  <line x1="8" y1="21" x2="16" y2="21"></line>
-                  <line x1="12" y1="17" x2="12" y2="21"></line>
-                </svg>
-              </div>
-              <div class="feature-text">
-                <h3>Priemyselná meracia technika</h3>
-                <p>Používame vysoko presné meracie prístroje pre I-V krivky a certifikované termokamery. Zaručujeme presné, reprodukovateľné výsledky v súlade s platnými technickými normami.</p>
-              </div>
-            </div>
-
-            <!-- Feature 3 -->
-            <div class="why-feature-item">
-              <div class="feature-icon-wrapper">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="feature-svg">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-              </div>
-              <div class="feature-text">
-                <h3>Sledovateľná história elektrárne</h3>
-                <p>Každé jedno meranie archivujeme a priraďujeme k vašej elektrárni. S priebežným monitoringom vieme presne ukázať, ako sa vyvíja účinnosť a zdravie vašich panelov v priebehu rokov.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature Image/Mockup container -->
-          <div class="why-us-visual">
-            <div class="glass-card visual-card animate-float">
-              <div class="visual-card-header">
-                <span class="badge badge-teal">Report merania</span>
-              </div>
-              <div class="visual-chart-sim">
-                <!-- SVG simulated line chart of decay/normal comparison -->
-                <svg viewBox="0 0 300 180" class="chart-svg">
-                  <path d="M 30 150 Q 150 130 270 50" fill="none" stroke="var(--secondary)" stroke-width="3" class="chart-line-active" />
-                  <path d="M 30 150 Q 150 110 270 110" fill="none" stroke="var(--error)" stroke-width="2" stroke-dasharray="4" />
-                  
-                  <!-- Dots -->
-                  <circle cx="270" cy="50" r="5" fill="var(--secondary)" />
-                  <circle cx="270" cy="110" r="4" fill="var(--error)" />
-                  
-                  <text x="200" y="40" fill="var(--secondary)" font-size="8" font-family="monospace">Optimal: 100%</text>
-                  <text x="200" y="125" fill="var(--error)" font-size="8" font-family="monospace">Real: 68% (Faulty String)</text>
-                  
-                  <!-- Axes -->
-                  <line x1="30" y1="150" x2="280" y2="150" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                  <line x1="30" y1="20" x2="30" y2="150" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-                  
-                  <text x="15" y="25" fill="var(--text-muted)" font-size="8">U (V)</text>
-                  <text x="270" y="165" fill="var(--text-muted)" font-size="8">I (A)</text>
-                </svg>
-              </div>
-              <div class="visual-card-desc">
-                <h4>Diagnostické vyhodnotenie</h4>
-                <p>Nameraná I-V krivka (prerušovaná čiara) jasne odhaľuje pokles prúdu a napätia z dôvodu vadného stringu, čo viedlo k okamžitej strate 32% výkonu celej elektrárne.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 4. Process Timeline Section -->
     <ProcessTimeline />
 
-    <!-- 5. FAQ Section -->
-    <FaqSection />
-
-    <!-- 6. Bottom CTA Section -->
+    <!-- 5. Bottom CTA Section -->
     <section class="cta-bottom-section">
       <div class="bg-glow bg-glow-orange" style="top: 10%; right: 10%; opacity: 0.15;"></div>
       <div class="bg-glow bg-glow-teal" style="bottom: 10%; left: 10%; opacity: 0.15;"></div>
