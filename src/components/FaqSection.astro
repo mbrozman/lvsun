@@ -1,0 +1,142 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
+  {
+    question: 'Kedy je správny čas zavolať na diagnostiku elektrárne?',
+    answer: 'Pri prvom nevysvetliteľnom poklese výkonu, ktorý si neviete zdôvodniť (napr. porovnaním so susedom alebo rovnakým obdobím minulého roka), alebo preventívne raz ročne. U starších elektrární je diagnostika obzvlášť dôležitá kvôli starnutiu konektorov a možným mikroskopickým trhlinám.'
+  },
+  {
+    question: 'Ako dlho meranie na mieste trvá a aké počasie vyžaduje?',
+    answer: 'Meranie trvá zvyčajne 2 až 4 hodiny v závislosti od veľkosti a zložitosti inštalácie. Pre termovízne skenovanie panelov je potrebné slnečné počasie s dobrou intenzitou žiarenia (aby sa prejavili teplotné rozdiely porúch). Meranie I-V kriviek a inšpekciu zapojenia striedača je však možné vykonať aj počas zamračených dní.'
+  },
+  {
+    question: 'Pracujete nezávisle od pôvodného dodávateľa fotovoltiky?',
+    answer: 'Áno, sme úplne nezávislá audítorská a servisná spoločnosť. Nepredávame a neinštalujeme žiadne fotovoltické systémy. To nám umožňuje byť 100% objektívnymi — naším cieľom je zistiť skutočný stav a navrhnúť optimálne opravy, nie obhajovať starú prácu alebo vám vnucovať drahé nové zariadenia.'
+  },
+  {
+    question: 'Prečo je dôležitý priebežný monitoring a nestačí len ročná kontrola?',
+    answer: 'Priebežný monitoring je kľúčový, pretože výpadok jedného stringu (radu panelov) alebo chybné správanie striedača si bez neho nemusíte všimnúť celé mesiace. Často sa takáto chyba prejaví až pri ročnom vyúčtovaní, čo pre majiteľa znamená stratu stoviek eur. S monitoringom odhalíme pokles výkonu už v prvom týždni.'
+  },
+  {
+    question: 'Čo presne dostanem v diagnostickej správe?',
+    answer: 'Dostanete prehľadný a technicky podložený audit. Obsahuje: namerané I-V krivky porovnané s nominálnymi hodnotami výrobcu, termovízne snímky s vyznačenými lokálnymi prehriatiami (hotspotmi), fotodokumentáciu fyzických poškodení a jasný návrh servisných opatrení vrátane predpokladaného rozpočtu.'
+  }
+];
+---
+
+<section id="faq-sekcia" class="faq-section">
+  <!-- Glow effect -->
+  <div class="bg-glow bg-glow-orange" style="top: 20%; right: -5%; opacity: 0.08;"></div>
+
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-teal">Často kladené otázky</span>
+      <h2>Predtým, než sa ozvete</h2>
+      <p>Pripravili sme pre vás odpovede na najčastejšie otázky, ktoré nám zákazníci kladú pred objednaním servisu.</p>
+    </div>
+
+    <div class="faq-container">
+      {faqs.map(faq => (
+        <details class="faq-item glass-panel">
+          <summary class="faq-question font-title">
+            <span>{faq.question}</span>
+            <div class="faq-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .faq-item {
+    border-radius: 14px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .faq-item[open] {
+    border-color: hsla(180, 80%, 45%, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 240, 240, 0.05);
+  }
+
+  .faq-question {
+    padding: 1.5rem 2rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none; /* Hide default marker */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    user-select: none;
+    color: var(--text-primary);
+  }
+
+  /* Hide default summary marker in Safari */
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+  }
+
+  .faq-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    color: var(--secondary);
+  }
+
+  .faq-answer {
+    padding: 0 2rem 1.5rem;
+    border-top: 1px solid transparent;
+  }
+
+  .faq-item[open] .faq-answer {
+    border-top-color: var(--border-color);
+  }
+
+  .faq-answer p {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    padding-top: 1rem;
+  }
+</style>

@@ -1,0 +1,475 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Naše Služby — Diagnostika, Servis a Monitoring" 
+  description="Podrobný prehľad služieb pre fotovoltiku. Zistite ako prebieha termovízia, meranie I-V charakteristík, opravy chýb a prepojenie na nepretržitý monitoring."
+>
+  <main class="services-page">
+    <!-- Page Header Hero -->
+    <section class="page-hero">
+      <div class="container text-center">
+        <span class="badge badge-teal">Čo robíme</span>
+        <h1>Kompletná starostlivosť o fotovoltiku</h1>
+        <p>Pomáhame vám maximalizovať zisky a minimalizovať riziká spojené s poruchami na vašej FVE.</p>
+      </div>
+    </section>
+
+    <!-- 1. Section: Diagnostika -->
+    <section id="diagnostika" class="service-detail-section">
+      <div class="container grid-2">
+        <div class="detail-content">
+          <span class="badge badge-teal">01 / DIAGNOSTIKA</span>
+          <h2>Hĺbková diagnostika elektrárne</h2>
+          <p>
+            Väčšina porúch na solárnych paneloch je voľným okom neviditeľná. Tieto poruchy však vedú k lokálnemu prehrievaniu, zníženiu výkonu stringov a v najhorších prípadoch až k riziku vzniku požiaru. Naša diagnostika odhalí všetky nedostatky.
+          </p>
+          
+          <div class="tech-specs-box glass-panel">
+            <h3>Čo meranie zahŕňa:</h3>
+            <ul class="specs-list">
+              <li>
+                <strong>Termovízna kontrola:</strong> Skenovanie panelov dronom alebo ručnou termokamerou. Odhalí hotspoty, skratované diódy v bypass boxoch a mikrotrhliny.
+              </li>
+              <li>
+                <strong>Meranie I-V kriviek:</strong> Diagnostika elektrických parametrov celých stringov. Porovnaním s krivkou výrobcu zistíme reálnu degradáciu a stratu výkonu.
+              </li>
+              <li>
+                <strong>Revízia elektroinštalácie:</strong> Kontrola rozvádzačov, svoriek, kvality konektorov MC4 a uzemnenia.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-visual">
+          <div class="glass-card tech-card">
+            <!-- Simulated Thermal Camera Screen -->
+            <div class="thermal-view">
+              <div class="thermal-header font-title">
+                <span>FLIR CAM 01</span>
+                <span>T_MAX: 78.4°C</span>
+              </div>
+              <div class="thermal-screen-sim">
+                <!-- Panel grid in warm/cold false colors (purple/yellow/orange) -->
+                <svg viewBox="0 0 300 200" class="thermal-svg">
+                  <!-- Background dark violet -->
+                  <rect width="100%" height="100%" fill="#2b003a"/>
+                  
+                  <!-- Normal cells (cold - purple/blue) -->
+                  <polygon points="20,150 140,50 280,150 140,190" fill="#4d008c" stroke="#120021" stroke-width="2"/>
+                  <line x1="140" y1="50" x2="140" y2="190" stroke="#120021" stroke-width="1.5"/>
+                  <line x1="80" y1="100" x2="210" y2="100" stroke="#120021" stroke-width="1.5"/>
+                  <line x1="50" y1="125" x2="240" y2="125" stroke="#120021" stroke-width="1.5"/>
+                  
+                  <!-- Hot cell (hotspot - yellow/orange/red) -->
+                  <polygon points="140,100 170,125 140,150 110,125" fill="#ff7700" opacity="0.8"/>
+                  <circle cx="140" cy="125" r="20" fill="#ffcc00" filter="blur(6px)" opacity="0.6"/>
+                  <circle cx="140" cy="125" r="6" fill="#ffffff" filter="blur(1px)"/>
+                  
+                  <text x="155" y="128" fill="#ffffff" font-family="monospace" font-size="8" font-weight="bold">78.4°C</text>
+                  <text x="30" y="175" fill="#a666ff" font-family="monospace" font-size="8">32.1°C</text>
+                </svg>
+              </div>
+              <p class="visual-caption">Simulácia záberu termokamery odhaľujúceho závažný hotspot na článku panela.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Section: Servis -->
+    <section id="servis" class="service-detail-section alt-bg">
+      <div class="bg-glow bg-glow-orange" style="bottom: 20%; right: -5%; opacity: 0.08;"></div>
+      
+      <div class="container grid-2 reverse">
+        <div class="detail-visual">
+          <div class="glass-card tech-card">
+            <!-- Simulated Servicing graphic -->
+            <div class="servicing-panel">
+              <svg viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="service-svg">
+                <!-- Inverter outline -->
+                <rect x="50" y="30" width="200" height="140" rx="10" stroke="var(--primary)" stroke-width="2" fill="rgba(30,41,59,0.3)" />
+                <path d="M50 70H250M50 130H250" stroke="var(--border-color)" stroke-width="1.5" />
+                <!-- LED Screen -->
+                <rect x="80" y="45" width="140" height="20" rx="3" fill="#090d16" stroke="var(--border-color)" />
+                <text x="90" y="58" fill="var(--success)" font-family="monospace" font-size="9">GRID OK: 10.5 kW</text>
+                <!-- Dial/Buttons -->
+                <circle cx="100" cy="100" r="12" stroke="var(--border-color)" stroke-width="1.5"/>
+                <line x1="100" y1="100" x2="108" y2="92" stroke="var(--primary)" stroke-width="2"/>
+                
+                <circle cx="150" cy="100" r="4" fill="var(--success)" />
+                <circle cx="170" cy="100" r="4" fill="var(--success)" />
+                <circle cx="190" cy="100" r="4" fill="var(--border-color)" />
+                
+                <!-- Connectors glow -->
+                <path d="M90 170V190M150 170V190M210 170V190" stroke="var(--secondary)" stroke-width="3" stroke-linecap="round" />
+                <circle cx="90" cy="190" r="3" fill="var(--secondary)" />
+                <circle cx="150" cy="190" r="3" fill="var(--secondary)" />
+                <circle cx="210" cy="190" r="3" fill="var(--secondary)" />
+              </svg>
+              <p class="visual-caption">Optimalizácia parametrov a diagnostika riadiacej jednotky striedača.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-content">
+          <span class="badge badge-orange">02 / SERVIS</span>
+          <h2>Záručné a pozáručné opravy</h2>
+          <p>
+            Nameraním poruchy naša práca nekončí. Ponúkame rýchly servisný zásah, pri ktorom odstránime zistené príčiny poklesu výkonu a uvedieme vašu elektráreň do optimálneho prevádzkového stavu.
+          </p>
+          
+          <div class="tech-specs-box glass-panel">
+            <h3>Typické servisné úkony:</h3>
+            <ul class="specs-list">
+              <li>
+                <strong>Oprava a výmena konektorov MC4:</strong> Najčastejšie miesto vzniku porúch, horúcich spojov a prechodových odporov.
+              </li>
+              <li>
+                <strong>Výmena nefunkčných panelov:</strong> Bezpečná demontáž poškodených panelov a nahradenie kompatibilnými typmi s rovnakými parametrami.
+              </li>
+              <li>
+                <strong>Optimalizácia striedačov:</strong> Konfigurácia softvéru, čistenie chladenia, prípadne výmena striedačov za nové vysokoúčinné modely.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Section: Monitoring -->
+    <section id="monitoring" class="service-detail-section">
+      <div class="container grid-2">
+        <div class="detail-content">
+          <span class="badge badge-teal">03 / MONITORING</span>
+          <h2>Priebežný online dohľad</h2>
+          <p>
+            Majte istotu, že vaša investícia zarába každý deň. Naša monitorovacia služba sleduje vývoj výroby vašej FVE v reálnom čase a porovnáva ho s aktuálnym slnečným žiarením v danej lokalite.
+          </p>
+          
+          <div class="tech-specs-box glass-panel">
+            <h3>Čo zahŕňa monitoring:</h3>
+            <ul class="specs-list">
+              <li>
+                <strong>24/7 Automatizovaný dohľad:</strong> Systém neustále zbiera dáta a vyhodnocuje anomálie na jednotlivých striedačoch alebo stringoch.
+              </li>
+              <li>
+                <strong>Okamžité varovania:</strong> Ak výroba klesne pod stanovenú prahovú hodnotu (napr. výpadok poistky), okamžite dostávame chybové hlásenie a vieme navrhnúť riešenie.
+              </li>
+              <li>
+                <strong>Mesačné reporty:</strong> Jasný prehľad o celkovej vyrobenej energii, úsporách a odhadovanom zdraví batériového úložiska.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-visual">
+          <div class="glass-card tech-card">
+            <!-- Simulated Dashboard -->
+            <div class="monitoring-dashboard">
+              <div class="dashboard-header font-title">
+                <span>LVsun MONITOR</span>
+                <span class="live-indicator"><span class="live-dot"></span> LIVE DOHĽAD</span>
+              </div>
+              <div class="dashboard-grid">
+                <div class="dash-card">
+                  <span class="dash-lbl">DNES VYROBENÉ</span>
+                  <span class="dash-val">42.8 kWh</span>
+                </div>
+                <div class="dash-card">
+                  <span class="dash-lbl">AKTUÁLNY VÝKON</span>
+                  <span class="dash-val text-gradient">8.42 kW</span>
+                </div>
+              </div>
+              <!-- Animated bar graph showing hours -->
+              <div class="dash-chart">
+                <div class="chart-bar" style="height: 15%"></div>
+                <div class="chart-bar" style="height: 35%"></div>
+                <div class="chart-bar" style="height: 60%"></div>
+                <div class="chart-bar" style="height: 85%"></div>
+                <div class="chart-bar" style="height: 95%"></div>
+                <div class="chart-bar" style="height: 90%"></div>
+                <div class="chart-bar" style="height: 70%"></div>
+                <div class="chart-bar" style="height: 45%"></div>
+                <div class="chart-bar" style="height: 20%"></div>
+              </div>
+              <p class="visual-caption">Zjednodušená ukážka dohľadového rozhrania pre sledovanie okamžitého výkonu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Contact Banner -->
+    <section class="services-cta">
+      <div class="container text-center">
+        <h2>Potrebujete overiť výkon svojej elektrárne?</h2>
+        <p>Nechajte diagnostiku na nezávislých odborníkov s profesionálnym technickým vybavením.</p>
+        <a href="/kontakt" class="btn btn-primary">Objednať obhliadku a meranie</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .services-page {
+    padding-top: 5rem;
+  }
+
+  /* Page Hero */
+  .page-hero {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-dark) 100%);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .page-hero h1 {
+    font-size: 3.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-hero p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+  }
+
+  /* Details sections */
+  .service-detail-section {
+    padding: 7rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .service-detail-section.alt-bg {
+    background: var(--bg-dark);
+  }
+
+  .detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .detail-content h2 {
+    font-size: 2.5rem;
+  }
+
+  .detail-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .tech-specs-box {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    border-radius: 14px;
+  }
+
+  .tech-specs-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  .specs-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .specs-list li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .specs-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary);
+    font-weight: 700;
+  }
+
+  .service-detail-section.alt-bg .specs-list li::before {
+    color: var(--primary);
+  }
+
+  /* Grid Layout Control */
+  .grid-2.reverse {
+    direction: ltr;
+  }
+
+  @media (min-width: 969px) {
+    .grid-2.reverse .detail-content {
+      order: 2;
+    }
+    .grid-2.reverse .detail-visual {
+      order: 1;
+    }
+  }
+
+  /* Visual graphics styles */
+  .detail-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tech-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+  }
+
+  .visual-caption {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 1rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  /* Thermal Simulation */
+  .thermal-view, .servicing-panel, .monitoring-dashboard {
+    width: 100%;
+  }
+
+  .thermal-header, .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .thermal-screen-sim {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .thermal-svg, .service-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Dashboard Simulation */
+  .monitoring-dashboard {
+    background: #090d16;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 1.5rem;
+  }
+
+  .live-indicator {
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--success);
+    display: inline-block;
+    animation: pulse-glow 1.5s infinite;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dash-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .dash-lbl {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .dash-val {
+    font-family: var(--font-title);
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .dash-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 60px;
+    padding: 0 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .chart-bar {
+    width: 8%;
+    background: var(--secondary);
+    border-radius: 3px 3px 0 0;
+    opacity: 0.75;
+    transition: var(--transition-smooth);
+  }
+
+  .chart-bar:hover {
+    background: var(--primary);
+    opacity: 1;
+  }
+
+  /* Services CTA Banner */
+  .services-cta {
+    background: var(--bg-dark);
+    padding: 8rem 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .services-cta h2 {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .services-cta p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+  }
+
+  @media (max-width: 968px) {
+    .service-detail-section {
+      padding: 5rem 0;
+    }
+
+    .detail-content h2 {
+      font-size: 2rem;
+    }
+  }
+</style>

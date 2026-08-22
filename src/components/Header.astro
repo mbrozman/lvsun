@@ -1,0 +1,332 @@
+---
+const pathname = Astro.url.pathname;
+const cleanPath = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+
+const navItems = [
+  { name: 'Domov', path: '/' },
+  { name: 'Služby', path: '/sluzby' },
+  { name: 'O nás', path: '/o-nas' },
+  { name: 'Kontakt', path: '/kontakt' }
+];
+
+const isActive = (path: string) => {
+  if (path === '/') {
+    return cleanPath === '/' || cleanPath === '';
+  }
+  return cleanPath.startsWith(path);
+};
+---
+
+<header>
+  <div class="container header-container">
+    <!-- Logo -->
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Sun core with diagnostic ray -->
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2" class="sun-core"></circle>
+          <!-- Sun rays / diagnostic crosshair -->
+          <path d="M12 2V5M12 19V22M2 12H5M19 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          <path d="M18.36 5.64L16.24 7.76M7.76 16.24L5.64 18.36M18.36 18.36L16.24 16.24M7.76 7.76L5.64 9.88" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <span class="logo-text">LV<span>sun</span></span>
+    </a>
+
+    <!-- Navigation -->
+    <nav class="desktop-nav">
+      <ul>
+        {navItems.map(item => (
+          <li>
+            <a 
+              href={item.path} 
+              class:list={[{ active: isActive(item.path) }]}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <a href="/kontakt" class="btn btn-outline-teal header-btn">Objednať kontrolu</a>
+      
+      <!-- Mobile Menu Trigger -->
+      <button class="mobile-nav-toggle" aria-label="Otvoriť menu" aria-expanded="false">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-menu">
+    <nav class="mobile-nav">
+      <ul>
+        {navItems.map(item => (
+          <li>
+            <a 
+              href={item.path} 
+              class:list={[{ active: isActive(item.path) }]}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))}
+        <li style="margin-top: 2rem;">
+          <a href="/kontakt" class="btn btn-primary" style="width: 100%;">Objednať kontrolu</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.querySelector('.mobile-nav-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const body = document.body;
+
+  toggleBtn?.addEventListener('click', () => {
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+    toggleBtn.classList.toggle('open');
+    mobileMenu?.classList.toggle('open');
+    body.classList.toggle('menu-open');
+  });
+
+  // Close menu on link click
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      toggleBtn?.setAttribute('aria-expanded', 'false');
+      toggleBtn?.classList.remove('open');
+      mobileMenu?.classList.remove('open');
+      body.classList.remove('menu-open');
+    });
+  });
+</script>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 1.25rem 0;
+    transition: var(--transition-smooth);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+  }
+
+  /* Scrolled Header Style */
+  :global(header.scrolled) {
+    padding: 0.85rem 0;
+    background: hsla(222, 47%, 4%, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 102;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.65rem;
+    font-weight: 800;
+    font-family: var(--font-title);
+    color: var(--text-primary);
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--secondary);
+    transition: var(--transition-smooth);
+  }
+
+  .logo-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .logo:hover .logo-icon {
+    color: var(--primary);
+    transform: rotate(45deg);
+  }
+
+  .logo-text {
+    letter-spacing: -0.03em;
+  }
+
+  .logo-text span {
+    color: var(--primary);
+  }
+
+  /* Desktop Nav */
+  .desktop-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.25rem;
+  }
+
+  .desktop-nav a {
+    font-family: var(--font-title);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .desktop-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    box-shadow: 0 0 8px var(--primary-glow);
+    transition: var(--transition-smooth);
+  }
+
+  .desktop-nav a:hover {
+    color: var(--text-primary);
+  }
+
+  .desktop-nav a:hover::after {
+    width: 100%;
+  }
+
+  .desktop-nav a.active {
+    color: var(--text-primary);
+  }
+
+  .desktop-nav a.active::after {
+    width: 100%;
+    background: var(--secondary);
+    box-shadow: 0 0 8px var(--secondary-glow);
+  }
+
+  /* Header Actions */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
+  }
+
+  /* Mobile Nav Toggle Button */
+  .mobile-nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 26px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+  }
+
+  .burger-line {
+    width: 100%;
+    height: 2px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+  }
+
+  /* Toggle Button Animations */
+  .mobile-nav-toggle.open .burger-line:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .mobile-nav-toggle.open .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav-toggle.open .burger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile Menu Overlay */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: hsla(222, 47%, 4%, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    border-left: 1px solid var(--border-color);
+  }
+
+  .mobile-menu.open {
+    right: 0;
+  }
+
+  .mobile-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 280px;
+    text-align: center;
+  }
+
+  .mobile-nav a {
+    font-family: var(--font-title);
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--text-secondary);
+    display: block;
+    padding: 0.75rem 0;
+  }
+
+  .mobile-nav a:hover,
+  .mobile-nav a.active {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px var(--primary-glow);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .desktop-nav,
+    .header-btn {
+      display: none;
+    }
+
+    .mobile-nav-toggle {
+      display: flex;
+    }
+  }
+
+  /* Global menu-open body control */
+  :global(body.menu-open) {
+    overflow: hidden;
+  }
+</style>

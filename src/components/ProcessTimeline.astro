@@ -1,0 +1,206 @@
+---
+interface Step {
+  number: string;
+  title: string;
+  desc: string;
+}
+
+const steps: Step[] = [
+  {
+    number: '01',
+    title: 'Objednávka a obhliadka',
+    desc: 'Dohodneme si vyhovujúci termín a zistíme základné informácie o výkone, počte panelov, striedačoch a konštrukcii vašej elektrárne.'
+  },
+  {
+    number: '02',
+    title: 'Meranie a termovízia',
+    desc: 'Naši technici zmerajú I-V krivky jednotlivých stringov a vykonajú precízne skenovanie panelov termokamerou (prípadne dronom pri veľkých plochách).'
+  },
+  {
+    number: '03',
+    title: 'Diagnostická správa',
+    desc: 'Vypracujeme detailný report s popísanými chybami, termovíznymi snímkami a presnými odporúčaniami, ktoré komponenty potrebujú zásah.'
+  },
+  {
+    number: '04',
+    title: 'Servisný zásah',
+    desc: 'Na základe schváleného postupu priamo na mieste vymeníme poškodené panely, opravíme konektory či zoptimalizujeme zapojenie striedača.'
+  },
+  {
+    number: '05',
+    title: 'Pripojenie na monitoring',
+    desc: 'Elektráreň integrujeme do nášho dohľadového systému pre permanentný monitoring výkonu, čím zaistíme okamžité zistenie budúcich porúch.'
+  }
+];
+---
+
+<section id="ako-to-funguje" class="timeline-section">
+  <!-- Glowing Background Accent -->
+  <div class="bg-glow bg-glow-teal" style="bottom: 10%; left: -5%; opacity: 0.1;"></div>
+
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-orange">Prehľadný postup</span>
+      <h2>Ako prebieha naša spolupráca</h2>
+      <p>Od prvého kontaktu až po dlhodobý monitoring – prejdite si 5 krokov k maximálnemu výkonu vašej fotovoltiky.</p>
+    </div>
+
+    <!-- Timeline Wrapper -->
+    <div class="timeline-container">
+      <!-- Glow line -->
+      <div class="timeline-line"></div>
+
+      <!-- Steps -->
+      {steps.map((step, idx) => (
+        <div class="timeline-item">
+          <!-- Dot & Number -->
+          <div class="timeline-badge-container">
+            <div class="timeline-dot"></div>
+            <div class="timeline-number font-title">{step.number}</div>
+          </div>
+          
+          <!-- Content Box -->
+          <div class="glass-card timeline-content">
+            <h3 class="timeline-title">{step.title}</h3>
+            <p class="timeline-desc">{step.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline-section {
+    background: var(--bg-dark);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .timeline-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  /* Glowing Center Line */
+  .timeline-line {
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 40px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    box-shadow: 0 0 10px rgba(0, 240, 240, 0.2);
+    z-index: 1;
+  }
+
+  .timeline-item {
+    position: relative;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    z-index: 2;
+  }
+
+  .timeline-badge-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 82px;
+    height: 82px;
+    flex-shrink: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--bg-deep);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    z-index: 4;
+    box-shadow: 0 0 10px var(--primary-glow);
+  }
+
+  /* Odd/Even different color accent for dots */
+  .timeline-item:nth-child(even) .timeline-dot {
+    border-color: var(--secondary);
+    box-shadow: 0 0 10px var(--secondary-glow);
+  }
+
+  .timeline-number {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    opacity: 0.15;
+    z-index: 2;
+    transition: var(--transition-smooth);
+  }
+
+  .timeline-item:hover .timeline-number {
+    opacity: 0.6;
+    color: var(--primary);
+    transform: scale(1.1);
+  }
+
+  .timeline-item:nth-child(even):hover .timeline-number {
+    color: var(--secondary);
+  }
+
+  .timeline-content {
+    padding: 2rem;
+    flex-grow: 1;
+    border-radius: 16px;
+    transition: var(--transition-smooth);
+  }
+
+  .timeline-item:hover .timeline-content {
+    transform: translateX(8px);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .timeline-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .timeline-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 20px;
+    }
+
+    .timeline-badge-container {
+      width: 42px;
+      height: 42px;
+    }
+
+    .timeline-dot {
+      left: 14px;
+    }
+
+    .timeline-number {
+      display: none; /* Hide numbers to save space on small screens */
+    }
+
+    .timeline-item {
+      gap: 1.5rem;
+    }
+
+    .timeline-content {
+      padding: 1.5rem;
+    }
+  }
+</style>

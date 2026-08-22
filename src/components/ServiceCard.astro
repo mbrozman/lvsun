@@ -1,0 +1,246 @@
+---
+interface Service {
+  id: string;
+  title: string;
+  badge: string;
+  badgeType: 'orange' | 'teal';
+  description: string;
+  features: string[];
+  link: string;
+  icon: 'diagnostics' | 'service' | 'monitoring';
+}
+
+const services: Service[] = [
+  {
+    id: 'diagnostika',
+    title: 'Diagnostika FVE',
+    badge: 'Prevencia & Meranie',
+    badgeType: 'teal',
+    description: 'Termovízia dronom, detailné meranie I-V kriviek stringov a dôkladná inšpekcia rozvádzačov odhalia straty, ktoré bežným okom neuvidíte.',
+    features: [
+      'Termovízne skenovanie panelov',
+      'Meranie I-V charakteristík',
+      'Kontrola konektorov a kabeláže',
+      'Podrobný diagnostický report'
+    ],
+    link: '/sluzby#diagnostika',
+    icon: 'diagnostics'
+  },
+  {
+    id: 'servis',
+    title: 'Opravný Servis',
+    badge: 'Údržba & Oprava',
+    badgeType: 'orange',
+    description: 'Neriešime len symptómy, ale odstraňujeme príčiny. Vykonáme opravu horúcich spojov, výmenu panelov aj úpravu nastavení meničov napätia.',
+    features: [
+      'Výmena poškodených panelov',
+      'Oprava spojov a kabeláže',
+      'Nastavenie a servis striedačov',
+      'Rekonštrukcia rozvádzačov'
+    ],
+    link: '/sluzby#servis',
+    icon: 'service'
+  },
+  {
+    id: 'monitoring',
+    title: 'Monitoring FVE',
+    badge: 'Nepretržitý Dohľad',
+    badgeType: 'teal',
+    description: 'Integrujeme elektráreň do nášho monitorovacieho systému. Výpadok stringu alebo pokles výkonu odhalíme v prvých dňoch, nie po roku.',
+    features: [
+      '24/7 automatický monitoring',
+      'Okamžité chybové notifikácie',
+      'Pravidelné mesačné reporty',
+      'Predikcia a analýza výroby'
+    ],
+    link: '/sluzby#monitoring',
+    icon: 'monitoring'
+  }
+];
+---
+
+<section id="sluzby-prehlad" class="services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-teal">Kompletné Portfólio</span>
+      <h2>Naše riešenia pre vašu elektráreň</h2>
+      <p>Poskytujeme komplexnú starostlivosť od odhalenia skrytých porúch až po ich okamžitú opravu a následný monitoring.</p>
+    </div>
+
+    <div class="grid-auto">
+      {services.map(service => (
+        <div class="glass-card service-card" id={`card-${service.id}`}>
+          <!-- Icon Header -->
+          <div class="card-icon-container">
+            {service.icon === 'diagnostics' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m16.2 7.8-8.4 8.4M12 2v2M12 20v2M20 12h2M2 12h2"></path>
+              </svg>
+            )}
+            {service.icon === 'service' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+              </svg>
+            )}
+            {service.icon === 'monitoring' && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon">
+                <path d="M3 3v18h18M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+              </svg>
+            )}
+          </div>
+
+          <!-- Title & Badges -->
+          <span class:list={['badge', service.badgeType === 'orange' ? 'badge-orange' : 'badge-teal', 'service-card-badge']}>
+            {service.badge}
+          </span>
+          <h3>{service.title}</h3>
+          <p class="service-card-desc">{service.description}</p>
+          
+          <!-- Features List -->
+          <ul class="service-features">
+            {service.features.map(feature => (
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feature-check">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a href={service.link} class="btn btn-secondary card-link">Zistiť viac &rarr;</a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-dark) 100%);
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    position: relative;
+    padding: 3rem 2.25rem 2.5rem;
+    z-index: 10;
+  }
+
+  /* Specific border glow on hover per card */
+  #card-diagnostika:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 10px 30px rgba(0, 240, 240, 0.1), var(--shadow-glow-secondary);
+  }
+
+  #card-servis:hover {
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(255, 150, 0, 0.1), var(--shadow-glow);
+  }
+
+  #card-monitoring:hover {
+    border-color: var(--secondary);
+    box-shadow: 0 10px 30px rgba(0, 240, 240, 0.1), var(--shadow-glow-secondary);
+  }
+
+  .card-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+  }
+
+  #card-diagnostika .card-icon-container {
+    color: var(--secondary);
+  }
+
+  #card-servis .card-icon-container {
+    color: var(--primary);
+  }
+
+  #card-monitoring .card-icon-container {
+    color: var(--secondary);
+  }
+
+  .service-card:hover .card-icon-container {
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.05);
+  }
+
+  .service-card-badge {
+    margin-bottom: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.65rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .service-card-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  /* Features list styling */
+  .service-features {
+    list-style: none;
+    margin-bottom: 2.25rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .service-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .feature-check {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  #card-diagnostika .feature-check,
+  #card-monitoring .feature-check {
+    color: var(--secondary);
+  }
+
+  #card-servis .feature-check {
+    color: var(--primary);
+  }
+
+  .card-link {
+    width: 100%;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
+  }
+
+  .service-card:hover .card-link {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--text-primary);
+  }
+</style>
