@@ -31,76 +31,23 @@
       </div>
     </div>
 
-    <!-- Right Column: Premium High-Tech Scan Animation -->
+    <!-- Right Column: Animated Scan Card -->
     <div class="hero-visual">
-      <div class="scanner-container glass-card">
-        <!-- Interactive Tech Panel Layout -->
-        <div class="scanner-header">
-          <span class="scanner-dot"></span>
-          <span class="scanner-title font-title">SYSTEM STATUS: ACTIVE SCAN</span>
+      <div class="scan-card" aria-hidden="true">
+        <div class="scan-head">
+          <span>LIVE SCAN · POLE A</span>
+          <b>8 × 3 moduly</b>
         </div>
-        
-        <!-- SVG Interactive Solar Panel & Scan Beam -->
-        <div class="scanner-screen">
-          <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="scanner-svg">
-            <!-- Grid background -->
-            <defs>
-              <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-            
-            <!-- Solar Panel Isometric grid -->
-            <g class="solar-panel-group">
-              <!-- Base Outline -->
-              <polygon points="60,200 200,80 340,200 200,260" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" fill="rgba(30, 41, 59, 0.4)"/>
-              
-              <!-- Individual Solar Cells Grid & Heatspots (Simulated Thermal Imaging) -->
-              <!-- Top Quadrant -->
-              <polygon points="200,80 130,140 200,170 270,140" stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="rgba(15, 23, 42, 0.6)"/>
-              <!-- Heatspot (Hot Cell) -->
-              <circle cx="200" cy="140" r="14" fill="rgba(239, 68, 68, 0.4)" filter="blur(6px)" class="thermal-hotspot"></circle>
-              <circle cx="200" cy="140" r="4" fill="var(--primary)" class="thermal-center"></circle>
-              
-              <!-- Left Quadrant -->
-              <polygon points="130,140 60,200 130,230 200,170" stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="rgba(15, 23, 42, 0.6)"/>
-              
-              <!-- Right Quadrant -->
-              <polygon points="270,140 200,170 270,230 340,200" stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="rgba(15, 23, 42, 0.6)"/>
-              <!-- Heatspot (Micro-crack) -->
-              <circle cx="280" cy="180" r="18" fill="rgba(180, 80, 45, 0.3)" filter="blur(8px)" class="thermal-hotspot-2"></circle>
-              
-              <!-- Bottom Quadrant -->
-              <polygon points="200,170 130,230 200,260 270,230" stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="rgba(15, 23, 42, 0.6)"/>
-            </g>
-
-            <!-- Diagnostic Scan Line (Laser Sweep) -->
-            <g class="laser-group">
-              <line x1="50" y1="120" x2="350" y2="120" stroke="var(--secondary)" stroke-width="2" class="laser-beam" />
-              <!-- Glow of the laser -->
-              <line x1="50" y1="120" x2="350" y2="120" stroke="var(--secondary)" stroke-width="8" opacity="0.3" class="laser-beam-glow" />
-            </g>
-
-            <!-- Holographic UI Overlays -->
-            <text x="70" y="50" fill="var(--secondary)" font-family="monospace" font-size="10" opacity="0.8">SCAN RATE: 100%</text>
-            <text x="70" y="70" fill="var(--text-secondary)" font-family="monospace" font-size="10" opacity="0.6">MODEL: IV-CURVE 3.1</text>
-            
-            <text x="250" y="270" fill="var(--primary)" font-family="monospace" font-size="10" opacity="0.8">HOTSPOT DETECTED</text>
-            <circle cx="235" cy="267" r="3" fill="var(--primary)"></circle>
-          </svg>
+        <div class="panel-grid">
+          <div class="scanline"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell f1 fault"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell f2 fault"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+          <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell f3 fault"></div><div class="cell"></div>
         </div>
-
-        <!-- System Stats Footer Inside Visual -->
-        <div class="scanner-footer">
-          <div class="footer-stat">
-            <span class="stat-lbl">RESOLUTION</span>
-            <span class="stat-val">384x288 px (IR)</span>
-          </div>
-          <div class="footer-stat">
-            <span class="stat-lbl">TEMP RANGE</span>
-            <span class="stat-val">-20°C ~ 550°C</span>
-          </div>
+        <div class="scan-readouts">
+          <span class="r1">Modul C1 · 68 °C horúci bod</span>
+          <span class="r2">String 2 · −12,4 % výkon</span>
+          <span class="r3">Modul G3 · uvoľnený konektor</span>
         </div>
       </div>
     </div>
@@ -108,6 +55,7 @@
 </section>
 
 <style>
+  /* ── Hero layout ── */
   .hero-section {
     padding-top: 10rem;
     padding-bottom: 7rem;
@@ -179,7 +127,6 @@
     line-height: 1.4;
   }
 
-  /* Right Column: Scan Animation styling */
   .hero-visual {
     display: flex;
     justify-content: center;
@@ -188,140 +135,201 @@
     z-index: 10;
   }
 
-  .scanner-container {
+  /* ── Scan Card ── */
+  .scan-card {
     width: 100%;
-    max-width: 460px;
+    max-width: 480px;
+    background: hsla(220, 30%, 8%, 0.85);
+    border: 1px solid hsla(140, 60%, 35%, 0.25);
+    border-radius: 18px;
     padding: 1.5rem;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px hsla(140,50%,30%,0.1);
+    backdrop-filter: blur(12px);
+    font-family: 'Space Mono', 'Courier New', monospace;
   }
 
-  .scanner-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .scanner-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--error);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--error);
-    animation: pulse-glow 1.5s infinite;
-  }
-
-  .scanner-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: 0.1em;
-  }
-
-  .scanner-screen {
-    background: #090d16;
-    border-radius: 10px;
-    border: 1px solid hsla(217, 30%, 20%, 0.7);
-    overflow: hidden;
-    position: relative;
-  }
-
-  .scanner-svg {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .scanner-footer {
+  /* header row */
+  .scan-head {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid var(--border-color);
-    padding-top: 1rem;
-    margin-top: 1.25rem;
+    align-items: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: hsla(140, 60%, 55%, 0.75);
+    margin-bottom: 1.1rem;
   }
-
-  .footer-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .stat-lbl {
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    font-weight: 600;
-  }
-
-  .stat-val {
-    font-family: monospace;
-    font-size: 0.85rem;
-    color: var(--secondary);
+  .scan-head b {
+    color: var(--primary);
     font-weight: 700;
   }
 
-  /* Scan Animations CSS */
-  @keyframes scan-sweep {
-    0% { transform: translateY(-40px); }
-    50% { transform: translateY(180px); }
-    100% { transform: translateY(-40px); }
+  /* ── Panel grid ── */
+  .panel-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    background: hsla(140, 25%, 6%, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    overflow: hidden;
   }
 
-  @keyframes pulse-hotspot {
-    0%, 100% { transform: scale(1); opacity: 0.4; }
-    50% { transform: scale(1.15); opacity: 0.85; }
+  .cell {
+    aspect-ratio: 1 / 1.1;
+    border-radius: 4px;
+    background: hsla(140, 30%, 14%, 0.8);
+    border: 1px solid hsla(140, 30%, 22%, 0.3);
+    position: relative;
+    transition: background 0.3s;
   }
 
-  .laser-beam, .laser-beam-glow {
-    animation: scan-sweep 6s ease-in-out infinite;
-    transform-origin: center;
+  /* fault glow blobs */
+  .fault::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    pointer-events: none;
   }
 
-  .thermal-hotspot, .thermal-hotspot-2 {
-    animation: pulse-hotspot 2s ease-in-out infinite;
-    transform-origin: 200px 140px;
+  /* f1 = amber/yellow — rovnaká farba ako r1 badge */
+  .f1 { background: hsla(45, 100%, 42%, 0.25); border-color: hsla(45,100%,60%,0.45); }
+  .f1::after { box-shadow: 0 0 22px 8px hsla(45,100%,60%,0.40); animation: pulse-f1 2.4s ease-in-out infinite; }
+
+  /* f2 = modrá/cyan — rovnaká farba ako r2 badge (hsl 200) */
+  .f2 { background: hsla(200, 80%, 40%, 0.22); border-color: hsla(200,80%,60%,0.40); }
+  .f2::after { box-shadow: 0 0 20px 7px hsla(200,80%,60%,0.35); animation: pulse-f2 3.1s ease-in-out infinite; }
+
+  /* f3 = biela/strieborná — rovnaká farba ako r3 badge */
+  .f3 { background: hsla(0, 0%, 90%, 0.12); border-color: hsla(0,0%,100%,0.40); }
+  .f3::after { box-shadow: 0 0 18px 6px hsla(0,0%,100%,0.25); animation: pulse-f3 2.7s ease-in-out infinite; }
+
+  @keyframes pulse-f1 {
+    0%,100% { opacity: 0.55; transform: scale(0.92); }
+    50%      { opacity: 1;    transform: scale(1.12); }
   }
-  
-  .thermal-hotspot-2 {
-    transform-origin: 280px 180px;
-    animation-delay: -1s;
+  @keyframes pulse-f2 {
+    0%,100% { opacity: 0.45; transform: scale(0.88); }
+    50%      { opacity: 0.95; transform: scale(1.15); }
+  }
+  @keyframes pulse-f3 {
+    0%,100% { opacity: 0.50; transform: scale(0.90); }
+    50%      { opacity: 1;    transform: scale(1.10); }
   }
 
-  /* Responsive Design */
+  /* ── Scan line sweep ── */
+  .scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      hsla(140, 80%, 55%, 0.0) 10%,
+      hsla(140, 80%, 65%, 0.85) 50%,
+      hsla(140, 80%, 55%, 0.0) 90%,
+      transparent 100%
+    );
+    filter: blur(1.5px);
+    box-shadow: 0 0 14px 4px hsla(140,80%,55%,0.5);
+    animation: scanline-sweep 5.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 2px;
+  }
+
+  @keyframes scanline-sweep {
+    0%   { left: 0%;    opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+
+  /* ── Readout badges ── */
+  .scan-readouts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .scan-readouts span {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid;
+    /* vždy viditelné, dim stav */
+    opacity: 0.3;
+    transition: opacity 0.15s, box-shadow 0.15s;
+  }
+
+  /*
+    Scanline trvanie: 5.5s
+    Grid: 8 stĺpce
+    f1 = stĺpec 3 (index 2)  → pozicia ~31% → rozsvieti sa v 31-41%
+    f2 = stĺpec 5 (index 4)  → pozicia ~56% → rozsvieti sa v 56-66%
+    f3 = stĺpec 7 (index 6)  → pozicia ~81% → rozsvieti sa v 81-91%
+  */
+
+  .r1 {
+    color: hsl(45,100%,65%);
+    border-color: hsla(45,100%,55%,0.35);
+    background: hsla(45,100%,50%,0.08);
+    animation: badge-r1 5.5s ease-in-out infinite;
+  }
+  .r2 {
+    color: hsl(200,80%,65%);
+    border-color: hsla(200,80%,55%,0.35);
+    background: hsla(200,80%,50%,0.08);
+    animation: badge-r2 5.5s ease-in-out infinite;
+  }
+  .r3 {
+    color: hsl(0,0%,90%);
+    border-color: hsla(0,0%,100%,0.25);
+    background: hsla(0,0%,100%,0.06);
+    animation: badge-r3 5.5s ease-in-out infinite;
+  }
+
+  /* f1 ~ 31% pozicia v gridd */
+  @keyframes badge-r1 {
+    0%,  26% { opacity: 0.28; box-shadow: none; }
+    31%       { opacity: 1;    box-shadow: 0 0 12px 2px hsla(45,100%,55%,0.45); }
+    41%       { opacity: 1;    box-shadow: 0 0 12px 2px hsla(45,100%,55%,0.45); }
+    46%, 100% { opacity: 0.28; box-shadow: none; }
+  }
+
+  /* f2 ~ 56% pozicia v gride */
+  @keyframes badge-r2 {
+    0%,  51% { opacity: 0.28; box-shadow: none; }
+    56%       { opacity: 1;    box-shadow: 0 0 12px 2px hsla(200,80%,55%,0.45); }
+    66%       { opacity: 1;    box-shadow: 0 0 12px 2px hsla(200,80%,55%,0.45); }
+    71%, 100% { opacity: 0.28; box-shadow: none; }
+  }
+
+  /* f3 ~ 81% pozicia v gride */
+  @keyframes badge-r3 {
+    0%,  76% { opacity: 0.28; box-shadow: none; }
+    81%       { opacity: 1;    box-shadow: 0 0 12px 2px hsla(0,0%,100%,0.35); }
+    91%       { opacity: 1;    box-shadow: 0 0 12px 2px hsla(0,0%,100%,0.35); }
+    96%, 100% { opacity: 0.28; box-shadow: none; }
+  }
+
+  /* ── Responsive ── */
   @media (max-width: 968px) {
-    .hero-section {
-      padding-top: 8rem;
-      padding-bottom: 5rem;
-    }
-
-    .hero-content h1 {
-      font-size: 2.85rem;
-    }
-
-    .hero-metrics {
-      max-width: 100%;
-    }
+    .hero-section { padding-top: 8rem; padding-bottom: 5rem; }
+    .hero-content h1 { font-size: 2.85rem; }
+    .hero-metrics { max-width: 100%; }
   }
 
   @media (max-width: 576px) {
-    .hero-content h1 {
-      font-size: 2.35rem;
-    }
-
-    .hero-actions {
-      width: 100%;
-    }
-
-    .hero-actions .btn {
-      width: 100%;
-    }
-
-    .hero-metrics {
-      flex-direction: column;
-      gap: 1rem;
-    }
+    .hero-content h1 { font-size: 2.35rem; }
+    .hero-actions { width: 100%; }
+    .hero-actions .btn { width: 100%; }
+    .hero-metrics { flex-direction: column; gap: 1rem; }
+    .scan-card { max-width: 100%; }
   }
 </style>
