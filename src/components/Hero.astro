@@ -253,49 +253,63 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 1.1rem;
   }
 
   .scan-readouts span {
     font-size: 0.72rem;
+    font-weight: 600;
     letter-spacing: 0.03em;
-    padding: 0.35rem 0.75rem;
+    padding: 0.35rem 0.8rem;
     border-radius: 999px;
-    border: 1px solid;
-    /* vždy viditelné, dim stav */
-    opacity: 0.3;
-    transition: opacity 0.15s, box-shadow 0.15s;
+    border: 1px solid transparent;
+    transition: all 0.25s ease-out;
   }
 
-  /*
-    Scanline: 7s LINEAR
+  /* 
+    Farebné stavy warningov:
+    - Pred zosnímaním: tlmený, ale čitateľný stav (jemný farebný odtieň, nie sivé blato)
+    - Po zosnímaní (.badge-active): plná sýtosť, žiarivý text, silnejšie pozadie a neonový glow
   */
 
+  /* R1: Modul C1 (Amber / Žlto-oranžová) */
   .r1 {
-    color: hsl(45,100%,65%);
-    border-color: hsla(45,100%,55%,0.35);
-    background: hsla(45,100%,50%,0.08);
-    transition: opacity 0.1s, box-shadow 0.1s;
+    color: rgba(255, 190, 40, 0.45);
+    border-color: rgba(255, 190, 40, 0.2);
+    background: rgba(255, 190, 40, 0.04);
   }
+  .r1.badge-active {
+    color: #ffc83b;
+    border-color: rgba(255, 200, 60, 0.6);
+    background: rgba(255, 200, 60, 0.16);
+    box-shadow: 0 0 16px 2px rgba(255, 200, 60, 0.45);
+  }
+
+  /* R2: String 2 (Azúrová / Modrá) */
   .r2 {
-    color: hsl(200,80%,65%);
-    border-color: hsla(200,80%,55%,0.35);
-    background: hsla(200,80%,50%,0.08);
-    transition: opacity 0.1s, box-shadow 0.1s;
+    color: rgba(56, 189, 248, 0.45);
+    border-color: rgba(56, 189, 248, 0.2);
+    background: rgba(56, 189, 248, 0.04);
   }
+  .r2.badge-active {
+    color: #38bdf8;
+    border-color: rgba(56, 189, 248, 0.6);
+    background: rgba(56, 189, 248, 0.16);
+    box-shadow: 0 0 16px 2px rgba(56, 189, 248, 0.45);
+  }
+
+  /* R3: Modul G3 (Biela / Strieborná) */
   .r3 {
-    color: hsl(0,0%,90%);
-    border-color: hsla(0,0%,100%,0.25);
-    background: hsla(0,0%,100%,0.06);
-    transition: opacity 0.1s, box-shadow 0.1s;
+    color: rgba(240, 245, 255, 0.45);
+    border-color: rgba(240, 245, 255, 0.2);
+    background: rgba(240, 245, 255, 0.04);
   }
-
-  /* dim stav — aktivácia cez JS */
-  .r1, .r2, .r3 { opacity: 0.25; }
-
-  .r1.badge-active { opacity: 1; box-shadow: 0 0 14px 3px hsla(45,100%,60%,0.55); }
-  .r2.badge-active { opacity: 1; box-shadow: 0 0 14px 3px hsla(200,80%,60%,0.55); }
-  .r3.badge-active { opacity: 1; box-shadow: 0 0 14px 3px hsla(0,0%,100%,0.45); }
+  .r3.badge-active {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 16px 2px rgba(255, 255, 255, 0.4);
+  }
 
   /* ── Responsive ── */
   @media (max-width: 968px) {
@@ -324,28 +338,25 @@
 
     if (!scanline || faults.some(f => !f.cell || !f.badge)) return;
 
-    // Badges začnú skryté
-    faults.forEach(({ badge }) => badge.classList.remove('badge-active'));
-
     let revealed = [false, false, false];
-    let lastScanRight = -Infinity;
+    let prevLeft = 0;
 
     function tick() {
       const sl = scanline.getBoundingClientRect();
 
-      // Detekcia resetu cyklu: scanline skokovo vyskoci naspat dolava
-      if (sl.right < lastScanRight - 40) {
+      // Ak čiara preskočila späť doľava (nový cyklus skenu)
+      if (sl.left < prevLeft - 50) {
         revealed = [false, false, false];
         faults.forEach(({ badge }) => badge.classList.remove('badge-active'));
       }
-      lastScanRight = sl.right;
+      prevLeft = sl.left;
 
       faults.forEach(({ cell, badge }, i) => {
-        if (revealed[i]) return; // uz odkryte, nechaj svietit
+        if (revealed[i]) return; // už svieti, nechaj svietiť
 
         const cr = cell.getBoundingClientRect();
-        // Trigger: pravý okraj scanline dosiahol ľavý okraj bunky
-        if (sl.right >= cr.left) {
+        // Akonáhle scanline narazí na ľavý okraj bunky, okamžite rozsvieť
+        if (sl.right >= cr.left + 2) {
           revealed[i] = true;
           badge.classList.add('badge-active');
         }
